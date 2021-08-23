@@ -15,7 +15,6 @@
             $cod_user=$_POST['cod_user'];
             $total_fact=$_POST['total_fact'];
             $obs_fact=$_POST['obs_fact'];
-            $cant_vendida=$_POST['cant_vendida'];
             $sql="INSERT INTO facturas VALUES($cod_fact,'$fecha_fact',$cod_user,$total_fact,'$obs_fact')";
             $ejecutar=$obj->insert($sql);
             if($ejecutar){
@@ -26,18 +25,14 @@
         }
         public function consult(){
             $obj=new FacturaModel();
-            $sql="SELECT detalle_factura_producto.cod_fact_prod, facturas.cod_fact, inventario_productos.nom_prod_inv, inventario_productos.precio_prod_inv, detalle_factura_producto.cant_vendida, 
-
-            detalle_factura_producto.total_prod FROM detalle_factura_producto, facturas, inventario_productos WHERE detalle_factura_producto.cod_fact=facturas.cod_fact AND 
-            
-            detalle_factura_producto.cod_inv=inventario_productos.cod_inv";
-            $ordenes=$obj->consult($sql);
-            include_once '../view/Orden/content.php';
+            $sql="SELECT facturas.cod_fact, facturas.fecha_fact, usuarios.doc_user, usuarios.nom_user, usuarios.ape_user, usuarios.corr_user, usuarios.dir_user, usuarios.tel_user, facturas.total_fact, facturas.obs_fact FROM facturas, usuarios WHERE facturas.cod_user=usuarios.cod_user";
+            $facturas=$obj->consult($sql);
+            include_once '../view/Factura/consult.php';
         }
         public function filtro(){
             $obj=new FacturaModel();
             $buscar=$_POST['buscar'];
-            $sql="SELECT facturas.cod_fact, facturas.fecha_fact, usuarios.nom_user, usuarios.ape_user, facturas.total_fact, facturas.obs_fact FROM facturas, usuarios WHERE facturas.cod_user=usuarios.cod_user AND (facturas.fecha_fact LIKE '%$buscar%' OR usuarios.nom_user LIKE '%$buscar%' OR usuarios.ape_user LIKE '%$buscar%' OR facturas.obs_fact LIKE '%$buscar%')";
+            $sql="SELECT facturas.cod_fact, facturas.fecha_fact, usuarios.doc_user, usuarios.nom_user, usuarios.ape_user, usuarios.corr_user, usuarios.dir_user, usuarios.tel_user, facturas.total_fact, facturas.obs_fact FROM facturas, usuarios WHERE facturas.cod_user=usuarios.cod_user AND (facturas.fecha_fact LIKE '%$buscar%' OR usuarios.doc_user LIKE '%$buscar%' OR usuarios.nom_user LIKE '%$buscar%' OR usuarios.ape_user LIKE '%$buscar%' OR usuarios.corr_user LIKE '%$buscar%' OR usuarios.dir_user LIKE '%$buscar%' OR facturas.obs_fact LIKE '%$buscar%')";
             $facturas=$obj->consult($sql);
             include_once '../view/Factura/filtro.php';
         }

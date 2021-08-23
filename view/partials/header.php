@@ -1,54 +1,76 @@
-<?php 
-    include_once '../lib/helpers.php';
-?>
 <header>
-<!-- MAIN HEADER -->
-        <div id="header">
-            <!-- container -->
-            <div class="container">
-                <!-- row -->
-                <div class="row">
-                    <!-- LOGO -->
-                    <div class="col-md-3">
-                        <!--juan agrege la url en la pagina princial-->
-                        <div class="header-logo">
-                            <a href="index.php" class="logo">
-                                <img src="./img/logo.png" alt="">
-                            </a>
+	<!--yecid -->
+	<div id="top-header">
+		<div class="container">
+		<?php 
+				if (@$_SESSION['nombre']) {
+			?> 
+			<div class="btn-group pull-right">
+				<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+				<i class="fa fa-cog" style="color: red;"></i>
+				</button>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="#">Config</a></li>
+					<li><a href="#">Cerrar Sesion</a></li>
+				</ul>
+			</div>
+			<?php   
+				}
+			?>
+			<ul class="header-links pull-right">
+				<li><a href="login.php"><i class="fa fa-user-o"></i> My Account</a></li>
+			</ul>
+		
+		</div>
+	</div>
+	<!--/yecid-->
+	<!-- MAIN HEADER -->
+	<div id="header">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- LOGO -->
+				<div class="col-md-3">
+					<div class="header-logo">
+						<a href="#" class="logo">
+							<img src="./img/logo.jpg"  alt=""> <!--beatriz-->
+						</a>
+					</div>
+				</div>
+				<!-- /LOGO -->
+
+				<!-- SEARCH BAR -->
+				<div class="col-md-6">
+					<div class="header-search">
+						<form>
+							<select class="input-select">
+								<option value="0">Deportes</option> <!--beatriz-->
+								<option value="1">Articulos</option> <!--beatriz-->
+								<option value="1">Ropa</option> <!--beatriz-->
+							</select>
+							<input class="input" placeholder="Buscar aquí..."> <!--beatriz-->
+							<button class="search-btn" href="<?php echo ""; ?>">Buscar</button> <!--beatriz-->
+						</form>
+					</div>
+				</div>
+				<!-- /SEARCH BAR -->
+
+				<!-- ACCOUNT -->
+				<div class="col-md-3 clearfix">
+					<div class="header-ctn">
+						<!-- Wishlist -->
+						<div>
+							<a href="#">
+								<i class="fa fa-heart-o"></i>
+								<span>Mi Cuenta</span>
+								<div class="qty">2</div>
+							</a>
                         </div>
-                    </div>
-                    <!-- /LOGO -->
+						<!-- /Wishlist -->
 
-                    <!-- SEARCH BAR -->
-                    <div class="col-md-6">
-                        <div class="header-search">
-                            <form>
-                                <select class="input-select">
-                                    <option value="0">All Categories</option>
-                                    <option value="1">Category 01</option>
-                                    <option value="1">Category 02</option>
-                                </select>
-                                <input class="input" placeholder="Search here">
-                                <button class="search-btn">Search</button>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- /SEARCH BAR -->
-
-                    <!-- ACCOUNT -->
-                    <div class="col-md-3 clearfix">
-                        <div class="header-ctn">
-                            <!-- Wishlist -->
-                            <div>
-                                <a href="#">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span>Mi Cuenta</span>
-                                    <div class="qty">2</div>
-                                </a>
-                            </div>
-                            <!-- /Wishlist -->
-
-                            <!-- Cart -->
+						<!-- Cart -->
+						<!-- Cart -->
                             <!--juan agrege la url de php para la consulta en php y comento para realizar el carrito abajo de la tarjeta-->
                             <div class="dropdown">
                             <!--juan elimine una class dropdown-toggle, data-toggle dropdown y aria-expanded true para enviar directamente al consult php-->
@@ -67,7 +89,7 @@
                                             <div class="bg-light p-4 rounded-lg m-4 mt-3">
             <h3 style="margin-left: 20px">Lista del Carrito</h3>
         </div>
-        <form action="<?php echo getUrl("Factura","Factura","postInsert");?>" method="post">
+        <form action="#" method="post">
             <div class="row">
                 <div class="col-md-4" style="margin-left: 20px">
                     <label for="my-input" style="margin-left: 20px">Mis Productos</label>
@@ -85,7 +107,7 @@
                              <!-- <tr>
                                 <td class="table__productos"><img src=${item.img} alt="" class="img" style="width: 60px"></td>
                                 <td><p class="product-name">${item.title}</p></td>
-                                <td><input type="number" style="width: 50px" min="1" name="cant_prod" id="cant" class="input__elemento table__cantidad" value=${item.amount}></td>
+                                <td><input type="number" style="width: 50px" min="1" name="cant_prod" id="cant" class="input_elemento table_cantidad" value=${item.amount}></td>
                                 <td>${item.price}</td>
                                 <td><button type="button" class="btn btn-danger delete"><i class="fa fa-trash"></i></button></td>
                             </tr> -->
@@ -94,7 +116,7 @@
                     <br>
                     <div class="row">
                         <div class="col" style="padding-left: 15px;">
-                            <h3 class="itemCartTotal">Total: 0</h3>
+                            <h3 class="itemCartTotal">SubTotal: 0</h3>
                         </div>
                         <div class="col d-flex justify-content-end" style="padding-left: 15px;">
                             <input type="submit" value="Comprar" class="btn btn-success">
@@ -136,22 +158,24 @@
                                 </div>
                             </div> -->
                             <!-- /Cart -->
+						<!-- /Cart -->
 
-                            <!-- Menu Toogle -->
-                            <div class="menu-toggle">
-                                <a href="#">
-                                    <i class="fa fa-bars"></i>
-                                    <span>Menu</span>
-                                </a>
-                            </div>
-                            <!-- /Menu Toogle -->
-                        </div>
-                    </div>
-                    <!-- /ACCOUNT -->
-                </div>
-                <!-- row -->
-            </div>
-            <!-- container -->
-        </div>
-        <!-- /MAIN HEADER -->
+						<!-- Menu Toogle -->
+						<div class="menu-toggle">
+							<a href="#">
+								<i class="fa fa-bars"></i>
+								<span>Menu</span>
+							</a>
+						</div>
+						<!-- /Menu Toogle -->
+		
+					</div>
+				</div>
+				<!-- /ACCOUNT -->
+			</div>
+			<!-- row -->
+		</div>
+		<!-- container -->
+	</div>
+	<!-- /MAIN HEADER -->
 </header>

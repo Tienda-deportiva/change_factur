@@ -6,6 +6,7 @@
         <tr>
             <th>ID Factura</th>
             <th>Fecha</th>
+            <th>Documento</th>
             <th>Nombre Usuario</th>
             <th>Apellido Usuario</th>
             <th>Total</th>
@@ -20,6 +21,7 @@
             echo "<tr>";
                 echo "<td>".$fac['cod_fact']."</td>";
                 echo "<td>".$fac['fecha_fact']."</td>";
+                echo "<td>".$fac['doc_user']."</td>";
                 echo "<td>".$fac['nom_user']."</td>";
                 echo "<td>".$fac['ape_user']."</td>";
                 echo "<td>".$fac['total_fact']."</td>";
