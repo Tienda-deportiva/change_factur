@@ -1,0 +1,91 @@
+<?php 
+    include_once '../model/Factura/FacturaModel.php';
+    class FacturaController{
+        public function getInsert(){
+            $obj=new FacturaModel();
+            $sql="SELECT * FROM facturas";
+            $facturas=$obj->consult($sql);
+            include_once '../view/Factura/insert.php';
+        }
+        public function postInsert(){
+            $obj=new FacturaModel();
+            $cod_fact=$obj->autoincrement('facturas','cod_fact');
+            $fecha_fact=$_POST['fecha_fact'];
+            $fecha_fact=date('Y-m-d');
+            $cod_user=$_POST['cod_user'];
+            $total_fact=$_POST['total_fact'];
+            $obs_fact=$_POST['obs_fact'];
+            $cant_vendida=$_POST['cant_vendida'];
+            $sql="INSERT INTO facturas VALUES($cod_fact,'$fecha_fact',$cod_user,$total_fact,'$obs_fact')";
+            $ejecutar=$obj->insert($sql);
+            if($ejecutar){
+                redirect(getUrl("Factura","Factura","getInsert"));
+            }else{
+                echo "Ups, ha ocurrido un error";
+            }
+        }
+        public function consult(){
+            $obj=new FacturaModel();
+            $sql="SELECT detalle_factura_producto.cod_fact_prod, facturas.cod_fact, inventario_productos.nom_prod_inv, inventario_productos.precio_prod_inv, detalle_factura_producto.cant_vendida, 
+
+            detalle_factura_producto.total_prod FROM detalle_factura_producto, facturas, inventario_productos WHERE detalle_factura_producto.cod_fact=facturas.cod_fact AND 
+            
+            detalle_factura_producto.cod_inv=inventario_productos.cod_inv";
+            $ordenes=$obj->consult($sql);
+            include_once '../view/Orden/content.php';
+        }
+        public function filtro(){
+            $obj=new FacturaModel();
+            $buscar=$_POST['buscar'];
+            $sql="SELECT facturas.cod_fact, facturas.fecha_fact, usuarios.nom_user, usuarios.ape_user, facturas.total_fact, facturas.obs_fact FROM facturas, usuarios WHERE facturas.cod_user=usuarios.cod_user AND (facturas.fecha_fact LIKE '%$buscar%' OR usuarios.nom_user LIKE '%$buscar%' OR usuarios.ape_user LIKE '%$buscar%' OR facturas.obs_fact LIKE '%$buscar%')";
+            $facturas=$obj->consult($sql);
+            include_once '../view/Factura/filtro.php';
+        }
+        public function getUpdate(){
+            $obj=new FacturaModel();
+            $cod_fact=$_GET['cod_fact'];
+            $sql="SELECT * FROM facturas WHERE cod_fact=$cod_fact";
+            $factura=$obj->consult($sql);
+            $sql="SELECT * FROM usuarios";
+            $usuarios=$obj->consult($sql);
+            include_once '../view/Factura/update.php';
+        }
+        public function postUpdate(){
+            $obj=new FacturaModel();
+            $cod_fact=$_POST['cod_fact'];
+            $fecha_fact=$_POST['fecha_fact'];
+            $cod_user=$_POST['cod_user'];
+            $total_fact=$_POST['total_fact'];
+            $obs_fact=$_POST['obs_fact'];
+            $sql="UPDATE facturas SET fecha_fact='$fecha_fact', cod_user=$cod_user, total_fact=$total_fact, obs_fact='$obs_fact' WHERE cod_fact=$cod_fact";
+            $ejecutar=$obj->update($sql);
+            if ($ejecutar) {
+                redirect(getUrl("Factura","Factura","consult"));
+            } else {
+                echo "Ups, ha ocurrido un error";
+            }
+        }
+        public function getDelete(){
+            $obj=new FacturaModel();
+            $cod_fact=$_GET['cod_fact'];
+            $sql="SELECT * FROM facturas WHERE cod_fact=$cod_fact";
+            $factura=$obj->consult($sql);
+            include_once '../view/Factura/delete.php';
+        }
+        public function postDelete(){
+            $obj=new FacturaModel();
+            $cod_fact=$_POST['cod_fact'];
+            $fecha_fact=$_POST['fecha_fact'];
+            $total_fact=$_POST['total_fact'];
+            $obs_fact=$_POST['obs_fact'];
+            $sql="DELETE FROM facturas WHERE cod_fact=$cod_fact";
+            $ejecutar=$obj->delete($sql);
+            if ($ejecutar) {
+                redirect(getUrl("Factura","Factura","consult"));
+            } else {
+                echo "Ups, ha ocurrido un error";
+            }
+            
+        }
+    }
+?>
