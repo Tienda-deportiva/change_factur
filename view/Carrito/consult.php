@@ -1,11 +1,5 @@
-<?php
-    include_once '../lib/helpers.php';
-    include_once '../view/partials/head.php';
-    include_once '../view/partials/header.php';
-?>
-<br>
 <div class="bg-light p-5 rounded-lg m-4 mt-3">
-    <h3 style="margin-left: 20px">Lista del Carrito</h3>
+    <h3 style="margin-left: 20px">Editar Lista</h3>
 </div>
 <form action="<?php echo getUrl("Carrito","Carrito","postInsert")?>" method="post">
     <div class="row">

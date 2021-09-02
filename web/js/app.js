@@ -1,6 +1,5 @@
 const Clickbutton=document.querySelectorAll('.button');
 const tbody=document.querySelector('.tbody');
-/* console.log(tbody); */
 let carrito=[];
 Clickbutton.forEach(btn=>{
     btn.addEventListener('click', addToCarritoItem);
@@ -11,7 +10,9 @@ function addToCarritoItem(e){
     const itemTitle=item.querySelector('.product-name').textContent;
     const itemPrice=item.querySelector('.product-price').textContent;
     const itemImg=item.querySelector('.img').src;
+    var codigo=$("#codigo").val();
     const newItem={
+        id: codigo,
         title: itemTitle,
         price: itemPrice,
         img: itemImg,
@@ -40,14 +41,15 @@ function renderCarrito(){
         tr.classList.add('ItemCarrito');
         const Content=`
         <td class="table__productos"><img src=${item.img} alt="" class="img" style="width: 60px"></td>
-        <td><p class="product-name">${item.title}</p></td>
+        <td><input type="hidden" name="nom_prod_inv" value=${item.title}><p class="product-name">${item.title}</p></td>
         <td><input type="number" style="width: 50px" min="1" name="cant_vendida" id="cant" class="input__elemento table__cantidad" value=${item.amount}></td>
-        <td>${item.price}</td>
+        <td class="product-price"><input type="hidden" name="precio_prod_inv" value=${item.price.replace("$", '')}>${item.price}</td>
         <td><button type="button" class="btn btn-danger delete"><i class="fa fa-trash"></i></button></td>`;
         tr.innerHTML=Content;
         tbody.append(tr);
         tr.querySelector('.delete').addEventListener('click', removeItemCarrito);
         tr.querySelector('.input__elemento').addEventListener('change', sumaCantidad);
+        $(".ItemCarrito").append(`<td><input type="hidden" name="cod_inv[]" value="${codigo}"></td>`);
     });
     CarritoTotal();
 }
@@ -58,8 +60,9 @@ function CarritoTotal(){
         const precio=Number(item.price.replace("$", ''));//devuelve una candena con algunas o todas las coincidencias de un patron o elemento.
         Total=Total+precio*item.amount;
     });
-    itemCartTotal.innerHTML=`Total $${Total} Pesos`;
-    /* addLocalStorage(); */
+    itemCartTotal.innerHTML=`SubTotal $${Total} Pesos`;
+    $(".itemCartTotal").append(`<input type="hidden" name="total_prod" value=${Total}>`);
+    addLocalStorage();
 }
 function removeItemCarrito(e){
     const buttonDelete=e.target;
@@ -85,7 +88,7 @@ function sumaCantidad(e){
         }
     });
 }
-/* function addLocalStorage(){
+function addLocalStorage(){
     localStorage.setItem('carrito', JSON.stringify(carrito));//guarda el string del carrito al local
 }
 window.onload=function(){
@@ -94,4 +97,7 @@ window.onload=function(){
         carrito=storage;
         renderCarrito();
     }
-} */
+}
+$("#limp").ready(function(){
+    carrito.remove();
+});

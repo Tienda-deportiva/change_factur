@@ -3,39 +3,75 @@
     class CarritoController{
         public function getInsert(){
             $obj=new CarritoModel();
-            $sql="SELECT * FROM productos";
-            $productos=$obj->insert($sql);
+            $sql="SELECT * FROM detalle_factura_producto";
+            $detalles=$obj->consult($sql);
             include_once '../view/Carrito/insert.php';
         }
-        /* public function postInsert(){
+        public function postInsert(){
             $obj=new CarritoModel();
-            $cod_prod=$_POST['cod_prod'];
-            $nom_prod=$_POST['nom_prod'];
-            $img_prod=$_FILES['img_prod']['name'];
-            $desc_prod=$_POST['desc_prod'];
-            $costo_prod_inv=$_POST['costo_prod_inv'];
-            $precio_prod_inv=$_POST['precio_prod_inv'];
-            $cod_cat=$_POST['cod_cat'];
+            $cod_fact_prod=$obj->autoincrement('detalle_factura_producto', 'cod_fact_prod');
+            $cod_fact=$_POST['cod_fact'];
             $cod_inv=$_POST['cod_inv'];
-            $ruta="img/$img_prod";
-            move_uploaded_file($_FILES['img_prod']['tmp_name'], $ruta);
-            $sql="INSERT INTO productos VALUES($cod_prod, '$nom_prod', '$desc_prod', $costo_prod_inv, $precio_prod_inv, $cod_cat, $cod_inv, '$ruta')";
+            $cant_vendida=$_POST['cant_vendida'];
+            $total_prod=$_POST['total_prod'];
+            $sql="INSERT INTO detalle_factura_producto VALUES($cod_fact_prod, $cod_fact, $cant_vendida, $total_prod)";
             $ejecutar=$obj->insert($sql);
             if ($ejecutar) {
-                redirect("Carrito","Carrito","getInsert");
-            }else{
+                redirect(getUrl("Carrito","Carrito","getInsert"));
+            } else {
                 echo "Ups, ha ocurrido un error";
             }
-        } */
+            
+        }
         public function consult(){
             $obj=new CarritoModel();
-            $sql="SELECT productos.cod_prod, productos.nom_prod, productos.img_prod, productos.desc_prod, productos.costo_prod_inv, productos.precio_prod_inv, inventario.cod_inv FROM productos, categorias, inventario WHERE productos.cod_categ=categorias.cod_categ AND productos.cod_inv=inventario.cod_inv";
-            $productos=$obj->consult($sql);
+            $sql="SELECT detalle_factura_producto.cod_fact_prod, detalle_factura_producto.cod_fact, detalle_factura_producto.cod_inv, detalle_factura_producto.cant_vendida, detalle_factura_producto.total_prod";
+            $detalles=$obj->consult($sql);
             include_once '../view/Carrito/consult.php';
         }
-        public function close(){
-            unset($_SESSION['carrito']['cod_prod']);
-            redirect("index.php");
+        public function getUpdate(){
+            $obj=new CarritoModel();
+            $cod_fact_prod=$_GET['cod_fact_prod'];
+            $sql="SELECT * FROM detalle_factura_producto";
+            $detalles=$obj->consult($sql);
+            include_once '../view/Carrito/update.php';
+        }
+        public function postUpdate(){
+            $cod_fact_prod=$_POST['cod_fact_prod'];
+            $cod_fact=$_POST['cod_fact'];
+            $cod_inv=$_POST['cod_inv'];
+            $cant_vendida=$_POST['cant_vendida'];
+            $total_prod=$_POST['total_prod'];
+            $sql="UPDATE detalle_factura_producto SET cod_fact_prod=$cod_fact_prod, cod_fact=$cod_fact, cod_inv=$cod_inv, cant_vendida=$cant_vendida, total_prod=$total_prod WHERE cod_fact_prod=$cod_fact_prod";
+            $ejecutar=$obj->update($sql);
+            if ($ejecutar) {
+                redirect(getUrl("Carrito","Carrito","consult"));
+            } else {
+                echo "Ups, ha ocurrido un error";
+            }
+        }
+        public function getDelete(){
+            $obj=new CarritoModel();
+            $cod_fact_prod=$_GET['cod_fact_prod'];
+            $sql="SELECT * FROM detalle_factura_producto";
+            $detalle=$obj->consult($sql);
+            include_once '../view/Carrito/delete.php';
+        }
+        public function postDelete(){
+            $obj=new CarritoModel();
+            $cod_fact_prod=$_POST['cod_fact_prod'];
+            $cod_fact=$_POST['cod_fact'];
+            $cod_inv=$_POST['cod_inv'];
+            $cant_vendida=$_POST['cant_vendida'];
+            $total_prod=$_POST['total_prod'];
+            $sql="DELETE FROM detalle_factura_producto WHERE cod_fact_prod=$cod_fact_prod";
+            $ejecutar=$obj->delete($sql);
+            if ($ejecutar) {
+                redirect(getUrl("Carrito","Carrito","consult"));
+            } else {
+                echo "Ups, ha ocurrido un error";
+            }
+            
         }
     }
 ?>

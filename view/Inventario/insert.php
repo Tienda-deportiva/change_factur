@@ -6,7 +6,7 @@
    
     </div>
 </div>
-    <form action="<?php echo getUrl("Inventario","Inventario","postInsert");?>" method="post"
+    <form action="<?php echo getUrl("Inventario","Inventario","postInsert",false,"administrador");?>" method="post"
     enctype="multipart/form-data">
         <div class="mt-4 row">
             <div class="form-group col-md-4">

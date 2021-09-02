@@ -5,6 +5,8 @@
             $obj=new FacturaModel();
             $sql="SELECT * FROM facturas";
             $facturas=$obj->consult($sql);
+            $sql="SELECT * FROM usuarios";
+            $usuarios=$obj->consult($sql);
             include_once '../view/Factura/insert.php';
         }
         public function postInsert(){

@@ -5,7 +5,7 @@
                 <h3>Registar Proveedor</h3><br><br>
             </div>
         </div>
-        <form action="<?php echo getUrl("Proveedores","Proveedores","postInsert");?>" method="post">
+        <form action="<?php echo getUrl("Proveedores","Proveedores","postInsert",false,"administrador");?>" method="post">
             <div class="container">
                 <div class="form-group col-md-2">
                     <label>Proveedor</label>

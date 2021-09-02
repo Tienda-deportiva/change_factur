@@ -82,12 +82,19 @@ class InventarioController{
         $cod_prod_inv=$_POST['cod_prod_inv'];
         $cod_inv=$_POST['cod_inv'];
     
-        $img_prod_inv=$_FILES['img_prod_inv']['name'];
-        $ruta="img/$img_prod_inv";
+        if (isset($_FILES['img_prod_inv']['name'])) {
+            $img_prod_inv=$_FILES['img_prod_inv']['name'];
+            $ruta="img/$img_prod_inv";
 
-        move_uploaded_file($_FILES['img_prod_inv']['tmp_name'],$ruta);
+            move_uploaded_file($_FILES['img_prod_inv']['tmp_name'],$ruta);
 
-        $sql="UPDATE inventario_productos SET cod_prod_inv=$cod_prod_inv, nom_prod_inv='$nom_prod_inv', costo_prod_inv='$costo_prod_inv',precio_prod_inv='$precio_prod_inv', desc_prod_inv='$desc_prod_inv', cant_prod_inv='$cant_prod_inv', img_prod_inv='$img_prod_inv', cod_prov=$cod_prov, cod_categ=$cod_categ WHERE cod_inv=$cod_inv";
+            $sql="UPDATE inventario_productos SET cod_prod_inv=$cod_prod_inv, nom_prod_inv='$nom_prod_inv', costo_prod_inv='$costo_prod_inv',precio_prod_inv='$precio_prod_inv', desc_prod_inv='$desc_prod_inv', cant_prod_inv='$cant_prod_inv', img_prod_inv='$ruta', cod_prov=$cod_prov, cod_categ=$cod_categ WHERE cod_inv=$cod_inv";
+    
+            $ruta_imagen_vieja=$_POST['ruta_imagen_vieja'];
+                unlink($ruta_imagen_vieja);
+        }else{
+                $sql="UPDATE inventario_productos SET cod_prod_inv=$cod_prod_inv, nom_prod_inv='$nom_prod_inv', costo_prod_inv='$costo_prod_inv',precio_prod_inv='$precio_prod_inv', desc_prod_inv='$desc_prod_inv', cant_prod_inv='$cant_prod_inv', cod_prov=$cod_prov, cod_categ=$cod_categ WHERE cod_inv=$cod_inv";
+        }
     
         $ejecutar=$obj->update($sql);
         
@@ -136,7 +143,5 @@ class InventarioController{
                 echo "Ups, ha ocurrido un error";
             }
     }
-}
-    
+}  
 ?>
-

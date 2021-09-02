@@ -8,7 +8,7 @@
         <?php
             while($inv=mysqli_fetch_assoc($inventario)) {
         ?>
-            <form action="<?php echo getUrl("Inventario","Inventario","postUpdate");?>" method="post">
+            <form action="<?php echo getUrl("Inventario","Inventario","postUpdate",false,"administrador");?>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="container">
                         <div class="form-group col-md-2">
@@ -75,8 +75,12 @@
                         
                         <div class="form-group col-md-4">
                             <label>Imagen Producto</label>
-                            <input type="hidden" name="img_prod_inv" value="<?php echo $inv['img_prod_inv'];?>">
-                            <input type="file" name="img_prod_inv" class="form-control" value="<?php echo $inv['img_prod_inv']; ?>">
+                            <div id="contenedorImagen">
+                                <img class="d-block" id="imagen" src="<?php echo $inv['img_prod_inv']; ?>" width="100px">
+                                <input type="hidden" name="img_prod_inv" value="<?php echo $inv['img_prod_inv'];?>">
+                                <input type="file" name="img_prod_inv" class="form-control" value="<?php echo $inv['img_prod_inv']; ?>">
+                                <button type="button" class="btn btn-primary" id="cambioImagen">Cambiar Imagen</button>
+                            </div>
                         </div>
                         
                         <div class="mt-4 row"><br><br><br><br>

@@ -1,7 +1,7 @@
 <div class="jumbotron bg-primary p-5 rounded-lg m-3">
     <h3 class="display-4 p-5">Registrar Categoria</h3>
 </div>
-<form action="<?php echo getUrl("Categoria","Categoria","postInsert"); ?>" method="post">
+<form action="<?php echo getUrl("Categoria","Categoria","postInsert",false,"administrador"); ?>" method="post">
     <div class="row">
         <div class="col-md-4">
             <label>Categoria</label>

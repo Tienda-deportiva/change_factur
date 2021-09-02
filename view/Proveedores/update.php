@@ -11,7 +11,7 @@
              while($prov=mysqli_fetch_assoc($proveedores)){
         ?>
 
-<form action="<?php echo getUrl("Proveedores","Proveedores","postUpdate");?>
+<form action="<?php echo getUrl("Proveedores","Proveedores","postUpdate",false,"administrador");?>
 "method="post">
 
 <div class="container">

@@ -1,9 +1,9 @@
 <?php
 
-include_once '../model/MasterModel.php';
+    include_once '../model/MasterModel.php';
 
-class InventarioModel extends MasterModel{
- 
-}
+    class InventarioModel extends MasterModel{
+    
+    }
 
 ?>

@@ -6,9 +6,12 @@
         <tr>
             <th>ID Factura</th>
             <th>Fecha</th>
-            <th>Documento</th>
+            <th>Documento Usuario</th>
             <th>Nombre Usuario</th>
             <th>Apellido Usuario</th>
+            <th>Correo Usuario</th>
+            <th>Direccion Usuario</th>
+            <th>Telefono Usuario</th>
             <th>Total</th>
             <th>Observación</th>
             <th>Editar</th>
@@ -24,6 +27,9 @@
                 echo "<td>".$fac['doc_user']."</td>";
                 echo "<td>".$fac['nom_user']."</td>";
                 echo "<td>".$fac['ape_user']."</td>";
+                echo "<td>".$fac['corr_user']."</td>";
+                echo "<td>".$fac['dir_user']."</td>";
+                echo "<td>".$fac['tel_user']."</td>";
                 echo "<td>".$fac['total_fact']."</td>";
                 echo "<td>".$fac['obs_fact']."</td>";
                 echo "<td><a href='".getUrl("Factura","Factura","getUpdate",array("cod_fact"=>$fac["cod_fact"]))."'<button class='btn btn-primary'>Editar</button></td>";

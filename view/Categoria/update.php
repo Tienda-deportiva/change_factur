@@ -5,7 +5,7 @@
 <?php
     while ($cat=mysqli_fetch_assoc($categoria)) {
 ?>
-<form action="<?php echo getUrl("Categoria","Categoria","postUpdate"); ?>" method="post">
+<form action="<?php echo getUrl("Categoria","Categoria","postUpdate",false,"administrador"); ?>" method="post">
     <div class="row">
         <div class="col-md-4">
             <label>Categoria</label>

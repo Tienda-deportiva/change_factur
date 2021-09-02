@@ -8,19 +8,19 @@
 					<div class="row">
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">About Us</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+								<h3 class="footer-title">Sobre Nosotros</h3> <!-- juan -->
+								<p>Somos una empresa que distribuye articulos y prendas deportivas a nivel Nacional e Internacional.</p> <!-- juan -->
 								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+									<li><a href="#"><i class="fa fa-map-marker"></i>Cali, Valle del Cauca</a></li> <!-- juan -->
+									<li><a href="#"><i class="fa fa-phone"></i>+57 321-285-51-70</a></li> <!-- juan -->
+									<li><a href="#"><i class="fa fa-envelope-o"></i>sports@gmail.com</a></li> <!-- juan -->
 								</ul>
 							</div>
 						</div>
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">Categorias deportivas</h3> <!--beatriz-->
+								<h3 class="footer-title">Deportes</h3> <!--beatriz-->
 								<ul class="footer-links"> <!--beatriz-->
 									<li><a href="aereo.php">Aéreos</a></li> <!--beatriz-->
 									<li><a href="terrestre.php">Terrestres</a></li> <!--beatriz-->
@@ -35,26 +35,26 @@
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">Information</h3>
+								<h3 class="footer-title">Información</h3>
 								<ul class="footer-links">
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Contact Us</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-									<li><a href="#">Orders and Returns</a></li>
-									<li><a href="#">Terms & Conditions</a></li>
+									<li><a href="#">Sobre Nosotros</a></li> <!-- juan -->
+									<li><a href="#">Contactenos</a></li> <!-- juan -->
+									<li><a href="#">Política de privacidad</a></li> <!-- juan -->
+									<li><a href="#">Pedidos y Devoluciones</a></li> <!-- juan -->
+									<li><a href="#">Términos y condiciones</a></li> <!-- juan -->
 								</ul>
 							</div>
 						</div>
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">Service</h3>
+								<h3 class="footer-title">Servicios</h3>
 								<ul class="footer-links">
-									<li><a href="#">My Account</a></li>
-									<li><a href="#">View Cart</a></li>
-									<li><a href="#">Wishlist</a></li>
-									<li><a href="#">Track My Order</a></li>
-									<li><a href="#">Help</a></li>
+									<li><a href="<?php echo getUrl("Usuarios","Usuarios","consult");?>">Mi Cuenta</a></li><!-- juan redirige al consult de Usuarios -->
+									<!-- <li><a href="#">View Cart</a></li> --> <!-- juan -->
+									<!-- <li><a href="#">Wishlist</a></li> --> <!-- juan -->
+									<li><a href="<?php echo getUrl("Factura","Factura","consult");?>">Verificar Mi Factura</a></li> <!-- juan redirige al consult de Factura -->
+									<!-- <li><a href="#">Help</a></li> --> <!-- juan -->
 								</ul>
 							</div>
 						</div>
@@ -71,17 +71,17 @@
 					<!-- row -->
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<ul class="footer-payments">
+							<!-- <ul class="footer-payments">
 								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
 								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
-							</ul>
+							</ul> --><!-- juan -->
 							<span class="copyright">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos los Derechos Reservados | Esta Plantilla Es Hecha Con <i class="fa fa-heart-o" aria-hidden="true"></i> Por <a href="https://colorlib.com" target="_blank">Colorlib</a><!-- juan -->
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
 						</div>
@@ -101,10 +101,8 @@
 		<script src="js/nouislider.min.js"></script>
 		<script src="js/jquery.zoom.min.js"></script>
 		<script src="js/main.js"></script>
-        <!--juan agrege este script para agregar al carrito-->
-        <script src="js/app.js"></script>
-        <!-- juan agregue este script para el filtro -->
-        <script src="js/global.js"></script>
-        <!-- <script src="js/carrito.js"></script> -->
+		<script src="js/app.js"></script><!-- juan -->
+		<script type="text/javascript" src="js/global.js"></script><!-- beatriz -->
+        
         </body>
 </html>

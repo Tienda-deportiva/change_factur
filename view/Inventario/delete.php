@@ -4,7 +4,7 @@
 <?php
 while($inv=mysqli_fetch_assoc($inventario)){
 ?>
-<form action="<?php echo getUrl("Inventario","Inventario","postDelete");?>" method="post">
+<form action="<?php echo getUrl("Inventario","Inventario","postDelete",false,"administrador");?>" method="post">
 <div class="row mt-4">
     <div class="col-md-4">
         <label>ID Inventario</label> 

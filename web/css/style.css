@@ -543,7 +543,7 @@ textarea.input {
 
 .cart-dropdown {
   position: absolute;
-  width: 400px;
+  width: 300px;
   background: #FFF;
   padding: 15px;
   -webkit-box-shadow: 0px 0px 0px 2px #E4E7ED;
@@ -715,7 +715,7 @@ textarea.input {
 .shop {
   position: relative;
   overflow: hidden;
-  margin: 15px 0px;
+  margin: 5px 0px;
 }
 
 .shop:before {

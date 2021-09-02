@@ -12,7 +12,7 @@ while($prov=mysqli_fetch_assoc($proveedores)){
 ?>
 <div class="container">
 
-<form action="<?php echo getUrl("Proveedores","Proveedores","postDelete");?>" method="post">
+<form action="<?php echo getUrl("Proveedores","Proveedores","postDelete",false,"administrador");?>" method="post">
 
 <div class="form-group col-md-2">
         <label>Proveedor</label>

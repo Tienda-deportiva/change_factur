@@ -1,9 +1,9 @@
 <?php
 
-include_once '../model/MasterModel.php';
+    include_once '../model/MasterModel.php';
 
-class ProveedoresModel extends MasterModel{
-    
-}
+    class ProveedoresModel extends MasterModel{
+        
+    }
 
 ?>
